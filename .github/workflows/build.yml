@@ -14,15 +14,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Install dependencies
-        run: npm install
-      - name: Create React Native android project
+      - name: Build
         run: |
-          npx react-native@0.73.4 init TempApp --skip-install
-          cp App.js TempApp/App.js
-          cp index.js TempApp/index.js
-          cd TempApp
+          npx react-native@0.73.4 init TextApp --skip-install
+          cd TextApp
           npm install
+          cp ../App.js App.js
           mkdir -p android/app/src/main/assets
           npx react-native bundle \
             --platform android \
@@ -31,8 +28,7 @@ jobs:
             --bundle-output android/app/src/main/assets/index.android.bundle \
             --assets-dest android/app/src/main/res
           cd android && ./gradlew assembleRelease
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: TextEditor-APK
-          path: TempApp/android/app/build/outputs/apk/**/*.apk
+          path: TextApp/android/app/build/outputs/apk/**/*.apk
