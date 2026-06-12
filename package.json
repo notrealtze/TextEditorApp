@@ -1,0 +1,12 @@
+{
+  "name": "TextEditorApp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-native": "0.73.4"
+  }
+}
